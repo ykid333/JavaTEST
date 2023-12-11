@@ -40,8 +40,8 @@ public class MainController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String path = request.getContextPath();
-		String url = request.getServletPath();
+		String path = request.getContextPath(); // contextPath 
+		String url = request.getServletPath(); // 요청 URL
 		System.out.println("요청URL : " + url);
 		MainService msvc = new MainService();
 		HttpSession session = request.getSession();
@@ -213,6 +213,8 @@ public class MainController extends HttpServlet {
 			response.sendRedirect(path+"/Success.jsp"
 					+"?msg="+ URLEncoder.encode(sendMsg, "UTF-8") 
 					+"&afterUrl="+ URLEncoder.encode(afterUrl, "UTF-8") );
+			break;
+		case "/test":
 			break;
 		}
 		

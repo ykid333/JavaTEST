@@ -120,6 +120,7 @@ public class MainController extends HttpServlet {
 					+"&afterUrl="+ URLEncoder.encode(afterUrl, "UTF-8"));
 			break;
 		case "/myInfo":
+			System.out.println("내 정보 페이지 이동요청");
 			if(loginId == null) {
 				response.sendRedirect(path+"/Success.jsp"
 						+"?msg="+ URLEncoder.encode("로그인 후 이용가능합니다.", "UTF-8") 

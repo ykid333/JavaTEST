@@ -26,7 +26,19 @@
 		padding: 10px;
 		text-align: center;
 	}
-
+	.countBtn{
+		border: 1px solid black;
+	    width: 30px;
+	    padding: 5px;
+	    font-weight:bold;
+	    font-size:15px;
+	    border-radius: 5px;
+	    cursor: pointer;
+	    background-color: inherit;
+	}
+	.countBtn:hover{
+		background-color:skyblue;
+	}
 </style>
 
 </head>
@@ -49,7 +61,7 @@
 						<th>가격</th>
 						<th>재고</th>
 						<th>종류</th>
-						<th style="width: 120px">주문</th>
+						<th style="width: 170px">주문</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,7 +71,12 @@
 						<td>${pr.prprice }</td>
 						<td>${pr.prstock }</td>
 						<td>${pr.prtype }</td>
-						<td> <input type="number" style="width: 30px;font-size: 18px;" value="0" min="1" max="${pr.prstock }"> <button onclick="order(this,'${pr.prcode}')">주문</button> </td>
+						<td>
+						<button class="countBtn" onclick="odcount(this)">-</button> 
+						<input type="text"  readonly="readonly" style="width: 30px;font-size: 18px; text-align: center;" value="0" min="1" max="${pr.prstock }">
+						<button class="countBtn" onclick="odcount(this)">+</button>
+						<button class="countBtn" style="width: 42px;" onclick="order(this,'${pr.prcode}')">주문</button>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -71,7 +88,7 @@
 
 <script type="text/javascript">
 	function order(selBtn, selPrcode){
-		let selValue =selBtn.previousElementSibling;
+		let selValue = selBtn.parentElement.querySelector('input');
 		console.log(selValue.max);
 		if( Number(selValue.value) <= 0 ){
 			alert('수량을 입력해주세요!');
@@ -88,6 +105,23 @@
 		
 	}
 
+	function odcount(btnEl){
+		const countEl = btnEl.parentElement.querySelector('input');
+		let btnOption = btnEl.innerText;
+		if(btnOption == '-'){
+			countEl.value = Number(countEl.value) - 1;
+			if(countEl.value <= 0){
+				countEl.value = 0;
+			}
+		} else {
+			countEl.value = Number(countEl.value) + 1;
+			if(countEl.value >= Number(countEl.max)  ){
+				countEl.value = Number(countEl.max);
+			}
+		}
+	}
+	
+	
 </script>
 
 

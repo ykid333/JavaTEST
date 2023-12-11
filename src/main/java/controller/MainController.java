@@ -121,7 +121,7 @@ public class MainController extends HttpServlet {
 			break;
 		case "/myInfo":
 			System.out.println("내 정보 페이지 이동요청");
-			if(loginId == null) {
+			if(loginId == null) { // 로그인 되어 있지 않은 경우 로그인 페이지로 이동
 				response.sendRedirect(path+"/Success.jsp"
 						+"?msg="+ URLEncoder.encode("로그인 후 이용가능합니다.", "UTF-8") 
 						+"&afterUrl="+ URLEncoder.encode("/memberLoginForm", "UTF-8")); 

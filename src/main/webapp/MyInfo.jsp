@@ -56,8 +56,9 @@
 		border-radius: 10px;
 		padding: 10px;	
 	}
-	.totalInfo > div:nth-child(1) {
-		margin-right: 10px;
+	.totalInfo > div:nth-child(2) {
+		margin-right:10px;
+		margin-left:10px;
 	}
 	.totalInfo p{
 		font-size: 20px;
@@ -95,7 +96,19 @@
 					<label for="mdate">가입일</label> <input type="text" readonly value="${myInfo.mdate }" >
 				</div>	
 				
+				
+				
 				<div class="totalInfo">
+					<div>
+						<h3>회원 등급</h3>
+						<p>
+						<c:choose>
+							<c:when test="${myInfo.totalprice > 5000000}">VVIP</c:when>
+							<c:when test="${myInfo.totalprice > 1000000}">VIP</c:when>
+							<c:otherwise>일반</c:otherwise>
+						</c:choose>
+						</p>
+					</div>
 					<div>
 						<h3>총 주문수</h3>
 						<p>${myInfo.totalorders }회</p>

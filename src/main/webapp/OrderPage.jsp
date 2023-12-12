@@ -13,8 +13,9 @@
 	    padding: 20px;
 	    border: 3px solid black;
 	    border-radius: 15px;
-	    width: 800px;
-	    margin: 0 auto;
+	    width: 800px; 
+	    margin: 0 auto; 
+	    display: flex;
 	}
 	
 	div.content table{
@@ -75,19 +76,19 @@
 						<button class="countBtn" onclick="odcount(this)">-</button> 
 						<input type="text"  readonly="readonly" style="width: 30px;font-size: 18px; text-align: center;" value="0" min="1" max="${pr.prstock }">
 						<button class="countBtn" onclick="odcount(this)">+</button>
-						<button class="countBtn" style="width: 42px;" onclick="order(this,'${pr.prcode}')">주문</button>
+						<button class="countBtn" style="width: 42px;" onclick="selProduct(this,'${pr.prcode}')">선택</button>
 						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
 			</table>
 		</div>
-		
+	
 	</div>
 </div>
 
 <script type="text/javascript">
-	function order(selBtn, selPrcode){
+	function selProduct(selBtn, selPrcode){
 		let selValue = selBtn.parentElement.querySelector('input');
 		console.log(selValue.max);
 		if( Number(selValue.value) <= 0 ){
@@ -100,9 +101,7 @@
 			selValue.focus();
 			return;
 		}
-		
 		location.href = "${pageContext.request.contextPath }/order?prcode="+selPrcode+"&odcount="+selValue.value;
-		
 	}
 
 	function odcount(btnEl){

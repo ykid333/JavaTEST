@@ -62,6 +62,7 @@ public class OrderDao {
 				loginMember.setMname(rs.getString("mname"));
 				loginMember.setMbirth(rs.getString("mbirth"));
 				loginMember.setMdate(rs.getString("mdate"));
+				loginMember.setMgrade(rs.getString("mgrade"));
 				loginMember.setMstate( rs.getString("mstate") );
 			}
 		} catch (SQLException e) {
@@ -279,7 +280,7 @@ public class OrderDao {
 		Connection con = getConnection();
 		/* 1. 쿼리문 작성*/
 		String sql = "SELECT M.MID, M.MPW, M.MNAME, TO_CHAR(M.MBIRTH, 'YYYY-MM-DD') AS MBIRTH,"
-				+ "          M.MDATE, M.MSTATE, OD.* "
+				+ "          M.MDATE, M.MGRADE, M.MSTATE, OD.* "
 				+ " FROM MEMBERS M "
 				+ "  LEFT OUTER JOIN (SELECT OD.MID, COUNT(*) AS TOTALORDERS, "
 				+ "                          SUM( OD.ODCOUNT * PR.PRPRICE ) AS TOTALPRICE "
@@ -301,6 +302,7 @@ public class OrderDao {
 				memInfo.put("mname", rs.getString("mname"));
 				memInfo.put("mbirth", rs.getString("mbirth"));
 				memInfo.put("mdate", rs.getString("mdate"));
+				memInfo.put("mgrade", rs.getString("mgrade"));
 				memInfo.put("mstate", rs.getString("mstate"));
 				memInfo.put("totalprice", rs.getString("totalprice"));
 				memInfo.put("totalorders", rs.getString("totalorders"));
